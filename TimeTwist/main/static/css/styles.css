@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 35%;
+    padding: 1rem 2rem;
+    background-color: #c8a2c8;
+    border-radius: 20px;
+    margin-top: 2.5rem;
+    margin-left: 1rem;
+}
+
+.nav-links {
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.profile-icon span {
+    font-size: 1.5rem;
+    color: black;
+    margin-left: 2rem;
+}
+
+/* Main Content Section */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 2rem;
+}
+
+.about-section {
+    flex: 1;
+}
+
+.about-button {
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.about-button:hover {
+    background-color: #555;
+}
+
+.title-section {
+    text-align: right;
+    margin-top: 20%;
+}
+
+.title-section h1 {
+    font-size: 2rem;
+    color: #333;
+    border-bottom: 2px solid #c8a2c8;
+    display: inline-block;
+}
