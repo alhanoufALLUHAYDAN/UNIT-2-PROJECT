@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+
+{% block title %}Time Twist{% endblock %}
+
+{% block content %}
+<div class="time-twist-container">
+
+    
+    <div class="search-section">
+        <input type="text" placeholder="search" class="search-input">
+        <button class="search-button">
+            <span class="material-icons-outlined">search</span>
+        </button>
+        <button class="filter-button">Article</button>
+        <button class="filter-button">Experiences</button>
+    </div>
+
+    
+    <div class="posts-container">
+        {% for entry in page_obj %}
+        <div class="post-box">
+            <h2 class="post-title">{{ entry.title }}</h2>
+            <p class="post-type"><strong>Type:</strong> {{ entry.entry_type }}</p>
+            <p class="post-content">{{ entry.content }}</p> 
+            <p class="post-date"><strong>Date:</strong> {{ entry.created_at|date:"Y-m-d" }}</p>
+            
+        </div>
+        {% empty %}
+        <p>No entries available.</p>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-btn">Previous</a>
+        {% endif %}
+    
+        {% for num in page_obj.paginator.page_range %}
+            <a href="?page={{ num }}" class="page-btn {% if page_obj.number == num %}active{% endif %}">{{ num }}</a>
+        {% endfor %}
+    
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="page-btn">Next</a>
+        {% endif %}
+    </div>
+    
+</div>
+{% endblock %}

@@ -4,27 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person" />
-    <title>{% block title %}Alhanouf's Time Twist{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Alhanouf's Time Twist</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header>
+    <!-- Header Section -->
+    <header class="header">
         <nav class="navbar">
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Time Twist</a></li>
-                <li><a href="#">Community</a></li>
+                <li><a href="{% url 'main:home_view' %}">Home</a></li>
+                <li><a href="{% url 'main:about_view' %}">About</a></li>
+                <li><a href="{% url 'twist:time_twist_view' %}">Time Twist</a></li>
+                <li><a href="{% url 'community:community_view' %}">Community</a></li>
+                
             </ul>
             <div class="profile-icon">
-                <span class="material-symbols-outlined">person</span>
+                <a href="{#}">
+                    <i class="icon-user"><span class="material-symbols-outlined">person</span></i>
+                </a>
             </div>
         </nav>
     </header>
 
+    <!-- Main Content Section -->
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock %}
     </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>Alhanouf's Time Twist </p>
+    </footer>
 </body>
 </html>
