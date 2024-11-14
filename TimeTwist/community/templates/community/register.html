@@ -5,7 +5,7 @@
     <title>Register</title>
     <style>
         body {
-            background-color: #F7EFE5;
+            background-color: #FFFBF5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -64,7 +64,7 @@
 <body>
     <div class="auth-container">
         <h2>Register</h2>
-        <form method="post" action="{% url 'community:register' %}">
+        <form method="post" action="{% url 'community:custom_register' %}">
             {% csrf_token %}
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>

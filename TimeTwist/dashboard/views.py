@@ -1,11 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpRequest
-from django.core.paginator import Paginator
 from twist.models import TimeTwist
 from dashboard.forms import TimeTwistForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 
+
+def admin_only(user):
+    return user.is_superuser
+
+@login_required
+@user_passes_test(admin_only)
 def dashboard(request):
+    if not request.user.is_superuser:
+        return redirect('main/home.html') 
     entries = TimeTwist.objects.all()
     search_query = request.GET.get('search', '')
     if search_query:

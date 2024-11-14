@@ -21,10 +21,14 @@
                 <li><a href="{% url 'main:about_view' %}">About</a></li>
                 <li><a href="{% url 'twist:time_twist_view' %}">Time Twist</a></li>
                 <li><a href="{% url 'community:community_view' %}">Community</a></li>
+                <li>{% if request.user.is_superuser %}
+                    <a href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+                     {% endif %}
+                </li>
                 
             </ul>
             <div class="profile-icon">
-                <a href="{#}">
+                <a href="{% url 'community:login'%}">
                     <i class="icon-user"><span class="material-symbols-outlined">person</span></i>
                 </a>
             </div>
