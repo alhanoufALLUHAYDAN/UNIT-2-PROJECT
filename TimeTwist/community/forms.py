@@ -9,4 +9,4 @@ class CommunityPostForm(forms.ModelForm):
 class CommunityCommentForm(forms.ModelForm):
     class Meta:
         model = CommunityComment
-        fields = ['content']
+        fields = ['content','reply_to']

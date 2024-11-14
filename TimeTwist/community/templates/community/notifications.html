@@ -1,0 +1,12 @@
+{% if notifications %}
+    <ul>
+        {% for notification in notifications %}
+            <li>
+                {{ notification.comment.creator.username }} replied on your post: "{{ notification.comment.content }}"
+                <a href="{% url 'community:mark_as_read' notification.id %}">View and Reply</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No new notifications.</p>
+{% endif %}
