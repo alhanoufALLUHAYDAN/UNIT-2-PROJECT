@@ -112,7 +112,7 @@
         </div>
     {% endif %}
     
-    <form method="post">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">
@@ -123,7 +123,7 @@
             {% endif %}
         </button>
     </form>
-
+    
     <a href="{% url 'dashboard:dashboard' %}" class="back-link">Back to Dashboard</a>
 </div>
 

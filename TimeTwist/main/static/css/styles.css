@@ -293,70 +293,95 @@ main {
 }
 
 .search-input {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 200px;
+    padding: 0.5rem;
+    border-radius: 2.5rem;
+    width: 250px;
+    margin-right: 0.5rem;
 }
 
 .search-button {
     background: none;
     border: none;
-    font-size: 1.2em;
+    color: #373502;
+    cursor: pointer;
 }
 
+
 .filter-button {
-    background-color: black;
+    background-color:#373502;
     color: white;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
 }
 
-
 .posts-container {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 80%;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .post-box {
-    background-color: white;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border: 1px solid #ccc;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+    width: 100%;
+}
+
+.post-image img {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.post-content-wrapper {
+    flex: 1;
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.post-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
 }
 
 .pagination {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 .page-btn {
-    display: inline-block;
-    margin: 0 5px;
     padding: 10px 15px;
-    font-size: 14px;
-    color: #333;
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin: 0 5px;
     text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.page-btn:hover {
-    background-color: #4CAF50;
-    color: white;
+    color: #373502;
+    border: 1px solid #373502;
+    border-radius: 5px;
 }
 
 .page-btn.active {
-    background-color: #E2BFD9;
-    color: white;
-    border-color: #E2BFD9;
+    background: #373502;
+    color: #fff;
 }
 
 
@@ -364,25 +389,27 @@ main {
 .filter-container {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     justify-content: center;
 }
 
 .search-input, .filter-select, .filter-button {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 2.5rem;
+    width: 250px;
+    margin-right: 0.5rem;
 }
 
 .filter-button {
-    background-color: #674188;
+    background-color: #E3A7B7;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 .filter-button:hover {
-    background-color: #5b3a7d;
+    background-color: #E3A7B7;
 }
 
 .add-entry-container {
@@ -393,7 +420,7 @@ main {
 }
 
 .add-entry-btn {
-    background-color: #674188; 
+    background-color: #E3A7B7; 
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
@@ -402,7 +429,7 @@ main {
 }
 
 .add-entry-btn:hover {
-    background-color: #5b3a7d;
+    background-color: #E3A7B7;
 }
 
 table {
@@ -418,7 +445,7 @@ th, td {
 }
 
 th {
-    background-color: #674188;
+    background-color: #E3A7B7;
     color: #fff;
 }
 

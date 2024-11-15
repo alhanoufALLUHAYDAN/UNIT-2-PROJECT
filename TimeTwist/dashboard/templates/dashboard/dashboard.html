@@ -1,15 +1,8 @@
+{% extends "main/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <h1></h1>
-    
+{% block title %}dashboard{% endblock %}
+
+{% block content %}
     {% if messages %}
     <div class="messages">
         {% for message in messages %}
@@ -42,16 +35,24 @@
                 <th>Title</th>
                 <th>Content</th>
                 <th>Entry Type</th>
+                <th>Image</th>
                 <th>Created At</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for entry in entries %}
+            {% for entry in page_obj.object_list %}
             <tr>
                 <td>{{ entry.title }}</td>
-                <td>{{ entry.content|truncatewords:10 }}</td>
+                <td>{{ entry.content|truncatewords:6 }}</td>
                 <td>{{ entry.entry_type }}</td>
+                <td>
+                    {% if entry.image %}
+                        <a href="{{ entry.image.url }}" target="_blank">View Image</a>
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
                 <td>{{ entry.created_at|date:"Y-m-d H:i" }}</td>
                 <td>
                     <a href="{% url 'dashboard:edit_entry' entry.id %}" class="edit-link">Update</a>
@@ -65,5 +66,20 @@
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ query }}&filter={{ filter_type }}" class="page-btn">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if num >= page_obj.number|add:'-1' and num <= page_obj.number|add:'1' %}
+                <a href="?page={{ num }}&search={{ query }}&filter={{ filter_type }}" class="page-btn {% if page_obj.number == num %}active{% endif %}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+    
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ query }}&filter={{ filter_type }}" class="page-btn">Next</a>
+        {% endif %}
+    </div> 
+{% endblock %}
+bbbbbbbbbbbbbbbb
