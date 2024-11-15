@@ -11,6 +11,6 @@ urlpatterns = [
     path('twist/', include('twist.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('community/', include('community.urls')),
-    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/', include('accounts.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

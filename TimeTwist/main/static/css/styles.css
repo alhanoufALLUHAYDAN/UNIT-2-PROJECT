@@ -1,71 +1,118 @@
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     font-family: "Open Sans", sans-serif;
     color: #333;
-    background-color: #FFFBF5;
+    background-color: #FDFCF8;
+}
+main {
+    flex: 1; 
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #E3A7B7;
 }
 
-.header {
-    background-color: #E2BFD9; 
-    padding: 1rem 2rem;
-    border-radius: 20px;
-    margin: 1rem;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+.logo img {
+    width: 150px; 
+    height: auto; 
+    flex: 1;
+    margin-right: 1rem;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    flex: 2;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: black;
+    color: #373502;
+    font-size: 1.2rem;
+    font-weight: 500;
+    position: relative; 
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; 
+    width: 0;
+    height: 2px; 
+    background-color: #E3A7B7; 
+    transition: width 0.3s ease; 
+}
+.nav-links a:hover::after {
+    width: 100%; 
+}
+.profile-icon {
+    flex: 1;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.profile-icon .username {
+    color: #373502;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: underline #E3A7B7 ; 
+
+}
+
+.profile-icon a,
+.profile-icon .user-profile-icon {
+    color: #373502;
+    text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.nav-links a:hover {
-    color: #6a1b9a; 
+.profile-icon a:hover,
+.profile-icon .user-profile-icon:hover {
+    color: #E3A7B7;
 }
 
-.profile-icon i {
-    font-size: 1.5rem;
-    color: black;
+.material-symbols-outlined {
+    font-size: 2rem;
+    color: #373502;
+    vertical-align: middle;
+}
+
+.material-symbols-outlined:hover {
+    color: #E3A7B7;
 }
 
 
 .footer {
+    justify-content: flex-end;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    padding: 10px;
+    border-top: 1px solid #E3A7B7;
 }
 
-
-
-.profile-icon a {
-    color: black;
-    text-decoration: none;
+.footer img {
+    justify-content: flex-end;
+    max-width: 150px; 
 }
 
-.profile-icon a:hover {
-    color: #6a1b9a;
-}
 
 /* home page */
 .home-container {
@@ -79,15 +126,8 @@ body {
 .main-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 80%;
-}
-
-
-.about-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
 }
 
 .site-title {
@@ -95,9 +135,41 @@ body {
     font-weight: bold;
     text-align: center;
     color: #333;
-    border-bottom: 4px solid #E2BFD9;
-    padding-bottom: 5px;
+    border-bottom: 2px solid #E3A7B7;
+    margin-bottom: 20px;
+    margin-right: 20px; 
 }
+.quote {
+    font-size: 1.2rem; 
+    color: #555; 
+    max-width: 350px; 
+    line-height: 1.5;
+    padding: 10px;
+    font-style: italic;
+    text-align: left;
+    margin-top: 40px; 
+    margin-right: 20px; 
+    padding-left: 20px;
+    border-left: 2px solid #E3A7B7; 
+}
+.home-container {
+    text-align: center;
+}
+
+.image-header {
+    width: 100%;
+    overflow: hidden;
+}
+
+.header-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+
 
 /* about page */
 .about-page * {

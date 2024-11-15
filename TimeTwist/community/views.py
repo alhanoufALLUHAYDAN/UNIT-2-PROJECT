@@ -2,11 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import CommunityPost, CommunityComment , Notification
 from .forms import CommunityPostForm, CommunityCommentForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.views.decorators.http import require_POST
-from django.contrib.auth.views import LogoutView
 from django.contrib.auth.models import User
 import re
 from django.http import HttpResponseRedirect 
@@ -179,38 +176,6 @@ def add_reply(request, comment_id):
     
     return redirect('community:community_view')
 
-def custom_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('community:community_view')
-        else:
-            messages.error(request, "Invalid username or password. Please try again.")
-    return render(request, 'community/login.html')
-
-def custom_register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('community:community_view')
-        else:
-            messages.error(request, "Registration failed. Please correct the errors and try again.")
-    else:
-        form = UserCreationForm()
-    return render(request, 'community/register.html', {'form': form})
-
-class LogoutView(LogoutView):
-    def dispatch(self, request, *args, **kwargs):
-        messages.success(request, "You have successfully logged out.")
-        return super().dispatch(request, *args, **kwargs)
     
 @login_required
 @require_POST

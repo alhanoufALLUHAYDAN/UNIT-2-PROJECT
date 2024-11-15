@@ -1,12 +1,19 @@
 {% extends "main/base.html" %}
-
+{% load static %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="home-container">
-
+    <div class="image-header">
+        <img src="{% static 'images/droste-effect-.jpg' %}" alt="Header Image" class="header-image">
+    </div>
+    
     <div class="main-content">
         <h1 class="site-title">Alhanouf's Time Twist</h1>
     </div>
+    <div>
+        <p class="quote">"While procrastinating is not a flaw, being a structured procrastinator is actually one way of being pretty productive." – John Perry</p>
+    </div>
+    
 </div>
 {% endblock %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'community',
     'twist',
     'dashboard',
+    'accounts',
 ]
 
 MIDDLEWARE = [

@@ -1,11 +1,10 @@
+{% extends "main/base.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+{% block title %}Community{% endblock %}
+{% block content %}
+
     <style>
         body {
             margin: 0;
@@ -13,31 +12,7 @@
             background-color: #FFFBF5;
         }
 
-        .community-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #E2BFD9;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px;
-            color: white;
-        }
-
-        .community-header h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .user-profile-icon {
-            color: #3b3b3b;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-        }
-
+      
         .search-bar {
             display: flex;
             justify-content: flex-end;
@@ -220,25 +195,6 @@
             border-radius: 5px;
         }
     </style>
-</head>
-<body>
-    <div class="community-page">
-        <header class="community-header">
-            <h1>Community</h1>
-            {% if user.is_authenticated %}
-            <form action="{% url 'community:logout' %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="user-profile-icon" style="background:none; border:none; cursor:pointer;">
-                    <span class="material-symbols-outlined">logout</span>
-                </button>
-            </form>
-            {% else %}
-            <a href="{% url 'community:login' %}" class="user-profile-icon">
-                <span class="material-symbols-outlined">person</span>
-            </a>
-            {% endif %}
-        </header>
-
         <div class="search-bar">
             <form method="get" action="{% url 'community:community_view' %}">
                 <input type="text" name="search" placeholder="Search..." class="search-input" value="{{ request.GET.search }}">
@@ -258,7 +214,7 @@
                     <button type="submit">Add Post</button>
                 </form>
             {% else %}
-                <p>Please <a href="{% url 'community:login' %}">login</a> to add a post.</p>
+                <p>Please <a href="{% url 'accounts:login' %}">login</a> to add a post.</p>
             {% endif %}
         </div>
         <div class="posts-section">
@@ -336,7 +292,7 @@
                                             </button>
                                         </form>
                                     {% else %}
-                                        <p>Please <a href="{% url 'community:login' %}">login</a> to reply.</p>
+                                        <p>Please <a href="{% url 'accounts:login' %}">login</a> to reply.</p>
                                     {% endif %}
                                 </div>
                             </div>
@@ -351,7 +307,7 @@
                                 </button>
                             </form>
                         {% else %}
-                            <p>Please <a href="{% url 'community:login' %}">login</a> to comment.</p>
+                            <p>Please <a href="{% url 'accounts:login' %}">login</a> to comment.</p>
                         {% endif %}
                     </div>
                 </div>
@@ -375,5 +331,5 @@
             editForm.style.display = editForm.style.display === "none" ? "block" : "none";
         }
     </script>
-</body>
-</html>
+{% endblock %}
+

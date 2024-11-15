@@ -89,7 +89,7 @@
 <body>
     <div class="auth-container">
         <h2>Login</h2>
-        <form method="post" action="{% url 'community:login' %}">
+        <form method="post" action="{% url 'accounts:login' %}">
             {% csrf_token %}
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>
@@ -98,10 +98,11 @@
             <input type="password" name="password" id="password" required>
 
             <div class="register-link">
-                <p>If you don't have an account, <a href="{% url 'community:custom_register' %}">Register here</a>.</p>
+                <p>If you don't have an account, <a href="{% url 'accounts:custom_register' %}">Register here</a>.</p>
             </div>
 
             <button type="submit">Login</button>
+            <button type="button" onclick="window.history.back()">Back</button>
         </form>
     </div>
 </body>
