@@ -59,11 +59,26 @@
         .auth-container button:hover {
             background-color: #555;
         }
+        .error-message {
+            color: #d8000c;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="auth-container">
         <h2>Register</h2>
+        {% if messages %}
+            <div class="error-message">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
         <form method="post" action="{% url 'accounts:custom_register' %}">
             {% csrf_token %}
             <label for="username">Username</label>

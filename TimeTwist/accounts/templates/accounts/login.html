@@ -82,7 +82,6 @@
             margin-bottom: 15px;
             text-align: center;
             font-weight: bold;
-            background-color: #ffd2d2;
         }
     </style>
 </head>
@@ -91,11 +90,32 @@
         <h2>Login</h2>
         <form method="post" action="{% url 'accounts:login' %}">
             {% csrf_token %}
+
+            {% if messages %}
+                <div class="error-message">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+           {% endif %}
+            
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>
+            
+            {% if form.errors.username %}
+                <div class="error-message">
+                    {{ form.errors.username|striptags }}
+                </div>
+            {% endif %}
 
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
+            
+            {% if form.errors.password %}
+                <div class="error-message">
+                    {{ form.errors.password|striptags }}
+                </div>
+            {% endif %}
 
             <div class="register-link">
                 <p>If you don't have an account, <a href="{% url 'accounts:custom_register' %}">Register here</a>.</p>

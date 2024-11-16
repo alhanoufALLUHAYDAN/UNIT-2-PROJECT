@@ -69,40 +69,6 @@ def add_post(request):
     else:
         form = CommunityPostForm()
     return render(request, 'community/add_post.html', {'form': form})
-
-'''@login_required
-@require_POST
-def add_comment(request, post_id):
-    post = get_object_or_404(CommunityPost, id=post_id)
-    
-    if request.method == 'POST':
-        # Adding a new comment
-        if 'post_comment' in request.POST:
-            comment_form = CommunityCommentForm(request.POST)
-            if comment_form.is_valid():
-                new_comment = comment_form.save(commit=False)
-                new_comment.creator = request.user
-                new_comment.post = post
-                new_comment.save()
-
-                # Handling mentions
-                mention_usernames = re.findall(r'@(\w+)', new_comment.content)
-                for username in mention_usernames:
-                    try:
-                        mentioned_user = User.objects.get(username=username)
-                        if mentioned_user != request.user:
-                            Notification.objects.create(
-                                recipient=mentioned_user,
-                                comment=new_comment
-                            )
-                    except User.DoesNotExist:
-                        continue
-
-                messages.success(request, "Your comment was posted successfully.")
-            return redirect('community:community_view')
-
-    return redirect('community:community_view')'''
-
 @require_POST
 @login_required
 def add_comment(request, post_id):
@@ -137,7 +103,6 @@ def add_comment(request, post_id):
         print("Request method is not POST")  
     
     return redirect('community:community_view')
-
 
 @login_required
 @require_POST
@@ -205,9 +170,33 @@ def delete_post(request, post_id):
 
 @login_required
 def notifications_view(request):
-    notifications = request.user.notifications.filter(is_read=False).order_by('-created_at')
-    return render(request, 'community/notifications.html', {'notifications': notifications})
+    
+   notifications = request.user.notifications.filter(is_read=False).order_by('-created_at')
+    
+   if request.method == 'POST':
+        notification_id = request.POST.get('notification_id')
+        reply_content = request.POST.get('reply_content')
+        
+        notification = Notification.objects.get(id=notification_id)
+        
+        notification.is_read = True
+        notification.save()
+        
+        comment = CommunityComment.objects.create(
+            content=reply_content,
+            creator=request.user,
+            post=notification.comment.post,
+            reply_to=notification.comment
+        )
+        
+        return redirect('community:notifications')
+   return render(request, 'community/notifications.html', {'notifications': notifications})
 
+@login_required
+def delete_notification(request, notification_id):
+    notification = Notification.objects.get(id=notification_id)
+    notification.delete()
+    return redirect('community:notifications')
 
 @login_required
 def mark_as_read(request, notification_id):

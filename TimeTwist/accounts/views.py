@@ -15,6 +15,7 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, "You have successfully logged in.")
             return redirect('main:home_view')
         else:
             messages.error(request, "Invalid username or password. Please try again.")
@@ -30,17 +31,16 @@ def custom_register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False 
+            user.is_active = True  
             user.save()
 
-            subject = "Verify Your Email Address"
-            message = f"Welcome! Please verify your email by clicking this link: http://yourdomain.com/verify/{user.id}/"
-            send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email])
+            login(request, user)
 
-            messages.success(request, "Registration successful. Check your email to verify your account.")
+            messages.success(request, "Registration successful. You are now logged in.")
             return redirect('main:home_view')
         else:
-            messages.error(request, "Registration failed. Please correct the errors and try again.")
+            messages.error(request, "There was an issue with your registration. Please check the fields and try again.")
     else:
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
+

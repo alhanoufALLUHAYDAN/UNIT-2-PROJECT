@@ -3,14 +3,7 @@
 {% block title %}dashboard{% endblock %}
 
 {% block content %}
-    {% if messages %}
-    <div class="messages">
-        {% for message in messages %}
-        <div class="message {{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    
+
     <div class="filter-container">
         <form method="GET" action="{% url 'dashboard:dashboard' %}">
             <input type="text" name="search" placeholder="Search by title" value="{{ search_query }}" class="search-input">

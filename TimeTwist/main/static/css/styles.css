@@ -112,6 +112,85 @@ main {
     justify-content: flex-end;
     max-width: 150px; 
 }
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert.success {
+    background-color: #DFF0D8;
+    color: #3C763D;
+}
+
+.alert.error {
+    background-color: #F2DEDE;
+    color: #A94442;
+}
+
+.alert.info {
+    background-color: #D9EDF7;
+    color: #31708F;
+}
+
+.alert.warning {
+    background-color: #FCF8E3;
+    color: #8A6D3B;
+}
+.notification-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+}
+
+.notification-dot {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    display: block;
+}
+/* تصميم الجرس */
+.notification-bell {
+    position: relative;
+    font-size: 24px;  /* حجم الجرس */
+    margin-left: 20px;  /* مسافة بين الجرس والعناصر الأخرى */
+    cursor: pointer;
+}
+
+/* تصميم النقطة الحمراء على الجرس */
+.notification-bell .notification-dot {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;  /* لجعلها دائرية */
+}
+
+/* تخصيص اسم المستخدم ليتماشى مع الجرس */
+.username {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+}
+
+/* تصميم النقطة الحمراء بجانب اسم المستخدم */
+.username .notification-dot {
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    margin-left: 8px;
+}
 
 
 /* home page */
@@ -521,4 +600,4 @@ tbody tr:nth-child(even) {
     color: #0c5460;
 }
 /* community page */
-
+  
