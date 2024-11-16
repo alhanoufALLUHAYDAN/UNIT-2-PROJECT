@@ -1,13 +1,13 @@
+import re
+from django.contrib import messages
+from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import CommunityPost, CommunityComment , Notification
 from .forms import CommunityPostForm, CommunityCommentForm
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
-import re
 from django.http import HttpResponseRedirect 
-from django.urls import reverse
 
 def community_view(request):
     post_form = CommunityPostForm()

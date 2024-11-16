@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpRequest
+from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import TimeTwist
 
@@ -8,7 +7,7 @@ from .models import TimeTwist
 
 def time_twist_view(request):
 
-    entries = TimeTwist.objects.all()  
+    entries = TimeTwist.objects.all().order_by('-created_at')
 
     query = request.GET.get('search', '')
     filter_type = request.GET.get('filter', '')

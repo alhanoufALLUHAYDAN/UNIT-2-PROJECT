@@ -3,7 +3,17 @@
 {% block title %}dashboard{% endblock %}
 
 {% block content %}
+<div class="filter-container">
+    <form method="GET" action="" id="filter-form">
+        <label for="table-select">Choose a table:</label>
+        <select name="table" id="table-select" onchange="toggleTable()">
+            <option value="entries" {% if table == 'entries' %}selected{% endif %}>Entries</option>
+            <option value="messages" {% if table == 'messages' %}selected{% endif %}>Messages</option>
+        </select>
+    </form>
+</div>
 
+<div id="entries-table" class="table-container" style="display: {% if table == 'entries' or not table %}block{% else %}none{% endif %};">
     <div class="filter-container">
         <form method="GET" action="{% url 'dashboard:dashboard' %}">
             <input type="text" name="search" placeholder="Search by title" value="{{ search_query }}" class="search-input">
@@ -36,7 +46,7 @@
         <tbody>
             {% for entry in page_obj.object_list %}
             <tr>
-                <td>{{ entry.title }}</td>
+                <td>{{ entry.title |truncatewords:6 }}</td>
                 <td>{{ entry.content|truncatewords:6 }}</td>
                 <td>{{ entry.entry_type }}</td>
                 <td>
@@ -73,6 +83,50 @@
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}&search={{ query }}&filter={{ filter_type }}" class="page-btn">Next</a>
         {% endif %}
-    </div> 
+    </div>
+</div>
+<div id="messages-table" class="table-container" style="display: {% if table == 'messages' %}block{% else %}none{% endif %};">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Sender</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in messages %}
+            <tr>
+                <td>{{ message.title }}</td>
+                <td>{{ message.content|truncatewords:6 }}</td>
+                <td>{{ message.user.username }}</td>
+                <td>{{ message.created_at|date:"Y-m-d H:i" }}</td>
+                <td>
+                    <a href="{% url 'dashboard:reply_message' message.id %}" class="reply-link">Reply</a> |
+                    <form action="{% url 'dashboard:delete_message' message.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this message?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function toggleTable() {
+        var selectedTable = document.getElementById("table-select").value;
+
+        document.getElementById("entries-table").style.display = 'none';
+        document.getElementById("messages-table").style.display = 'none';
+
+        if (selectedTable === "entries") {
+            document.getElementById("entries-table").style.display = 'block';
+        } else if (selectedTable === "messages") {
+            document.getElementById("messages-table").style.display = 'block';
+        }
+    }
+</script>
 {% endblock %}
-bbbbbbbbbbbbbbbb

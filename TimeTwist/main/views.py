@@ -1,4 +1,7 @@
-from django.shortcuts import render 
+from django.shortcuts import render , redirect
+from main.forms import ContactForm
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -18,4 +21,21 @@ def about_view(request):
     return render(request, 'main/about.html')
 
 
+def contact(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "You must be logged in to send a message.")
+        return redirect('accounts:login')  
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.user = request.user
+            message.save()
+            messages.success(request, "Your message has been sent successfully.")
+            return redirect('main:home_view')
+    else:
+        form = ContactForm()
+
+    return render(request, 'main/contact.html', {'form': form})
 

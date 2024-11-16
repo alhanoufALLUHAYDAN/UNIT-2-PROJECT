@@ -14,7 +14,7 @@ Alhanouf's Time Twist is a personal website that explores the concept of "positi
 
 ## User Stories, Wireframes & UML links
 - [User stories](https://drive.google.com/file/d/13hoTbriFF0RKSdn1XO3G852HQtohmbBB/view?usp=share_link)
-- wireframe : 
+- [wireframe](https://www.figma.com/design/pED7mSSseOD7NAyu8AUktR/Untitled?node-id=0-1&t=0WdY3F3ZEbk3Bxrk-1) 
 - [UML]( https://lucid.app/lucidchart/a7973c59-a05b-4422-ad46-c1ef3b632c7a/edit?viewport_loc=-2693%2C-865%2C3461%2C2026%2C0_0&invitationId=inv_74b6d6c9-abf0-49ba-9db4-eeff9bb8ca18)
 
 

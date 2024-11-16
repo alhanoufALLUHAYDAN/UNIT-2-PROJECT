@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/twist.png' %}">
+    <title>Contact Me</title>
+    <style>
+        body {
+            background-color: #FFFBF5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .auth-container {
+            background-color: #E2BFD9;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .auth-container label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .auth-container input[type="text"],
+        .auth-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .auth-container button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .auth-container button:hover {
+            background-color: #555;
+        }
+
+        .error-message {
+            color: #d8000c;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Contact Me</h2>
+        <form method="post" action="{% url 'main:contact' %}">
+            {% csrf_token %}
+
+            {% if messages %}
+                <div class="error-message">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <label for="title">Subject</label>
+            <input type="text" name="title" id="title" required>
+
+            {% if form.errors.title %}
+                <div class="error-message">
+                    {{ form.errors.title|striptags }}
+                </div>
+            {% endif %}
+
+            <label for="content">Your Message</label>
+            <textarea name="content" id="content" rows="5" required></textarea>
+
+            {% if form.errors.content %}
+                <div class="error-message">
+                    {{ form.errors.content|striptags }}
+                </div>
+            {% endif %}
+
+            <button type="submit">Send Message</button>
+            <button type="button" onclick="window.history.back()">Back</button>
+        </form>
+    </div>
+</body>
+</html>

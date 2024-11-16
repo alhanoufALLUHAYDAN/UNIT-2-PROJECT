@@ -246,10 +246,6 @@ main {
     object-fit: cover;
     border-radius: 10px;
 }
-
-
-
-
 /* about page */
 .about-page * {
     margin: 0;
@@ -263,12 +259,11 @@ main {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #FFFBF5;
 }
 
 
 .about-container {
-    background-color: #E2BFD9;
+    background-color: #ccdfaa;
     width: 90%;
     height: auto;
     padding: 20px;
@@ -276,6 +271,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 40px;
 }
 
 .about-content-box {
@@ -326,6 +322,7 @@ main {
     color: black;
     padding: 10px;
     border-radius: 5px;
+    font-size: 20px;
     margin: 0;
     flex: 0 0 60%;
     
@@ -349,6 +346,36 @@ main {
     border-radius: 10px;
     margin-right: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.about-media-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.about-media-box video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.site-logo {
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+}
+.about-text-box h2{
+    color: #A12A5B;
+}
+.section-title {
+    margin-bottom: 20px; 
+    padding-bottom: 10px; 
+    border-bottom: 2px solid #ccdfaa; 
+    font-size: 24px; 
+    font-weight: bold; 
 }
 
 /* time twist page */
@@ -562,12 +589,6 @@ tbody tr:nth-child(even) {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
-.delete-button:hover {
-    background-color: #d32f2f;
-}
-
-
 /* messages */
 .messages {
     margin: 20px 0;
