@@ -69,6 +69,7 @@ def add_post(request):
     else:
         form = CommunityPostForm()
     return render(request, 'community/add_post.html', {'form': form})
+
 @require_POST
 @login_required
 def add_comment(request, post_id):
@@ -170,10 +171,9 @@ def delete_post(request, post_id):
 
 @login_required
 def notifications_view(request):
+    notifications = request.user.notifications.filter(is_read=False).order_by('-created_at')
     
-   notifications = request.user.notifications.filter(is_read=False).order_by('-created_at')
-    
-   if request.method == 'POST':
+    if request.method == 'POST':
         notification_id = request.POST.get('notification_id')
         reply_content = request.POST.get('reply_content')
         
@@ -182,15 +182,21 @@ def notifications_view(request):
         notification.is_read = True
         notification.save()
         
-        comment = CommunityComment.objects.create(
-            content=reply_content,
-            creator=request.user,
-            post=notification.comment.post,
-            reply_to=notification.comment
-        )
+        if hasattr(notification, 'comment') and notification.comment:
+            comment = CommunityComment.objects.create(
+                content=reply_content,
+                creator=request.user,
+                post=notification.comment.post,
+                reply_to=notification.comment
+            )
+            messages.success(request, "Your reply was posted successfully.")
+        else:
+            messages.error(request, "No comment found for this notification.")
         
         return redirect('community:notifications')
-   return render(request, 'community/notifications.html', {'notifications': notifications})
+    
+    return render(request, 'community/notifications.html', {'notifications': notifications})
+
 
 @login_required
 def delete_notification(request, notification_id):

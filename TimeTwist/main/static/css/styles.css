@@ -155,15 +155,15 @@ main {
     border-radius: 50%;
     display: block;
 }
-/* تصميم الجرس */
+
 .notification-bell {
     position: relative;
-    font-size: 24px;  /* حجم الجرس */
-    margin-left: 20px;  /* مسافة بين الجرس والعناصر الأخرى */
+    font-size: 24px;  
+    margin-left: 20px;  
     cursor: pointer;
 }
 
-/* تصميم النقطة الحمراء على الجرس */
+
 .notification-bell .notification-dot {
     position: absolute;
     top: -5px;
@@ -171,10 +171,10 @@ main {
     width: 10px;
     height: 10px;
     background-color: red;
-    border-radius: 50%;  /* لجعلها دائرية */
+    border-radius: 50%;  
 }
 
-/* تخصيص اسم المستخدم ليتماشى مع الجرس */
+
 .username {
     display: flex;
     align-items: center;
@@ -183,7 +183,7 @@ main {
     position: relative;
 }
 
-/* تصميم النقطة الحمراء بجانب اسم المستخدم */
+
 .username .notification-dot {
     width: 8px;
     height: 8px;
@@ -581,23 +581,10 @@ tbody tr:nth-child(even) {
 }
 
 .message.success {
-    background-color: #d4edda;
     color: #155724;
 }
 
 .message.error {
-    background-color: #f8d7da;
     color: #721c24;
 }
 
-.message.warning {
-    background-color: #fff3cd;
-    color: #856404;
-}
-
-.message.info {
-    background-color: #d1ecf1;
-    color: #0c5460;
-}
-/* community page */
-  
