@@ -16,7 +16,7 @@ def time_twist_view(request):
         entries = entries.filter(title__icontains=query)
     if filter_type:
         entries = entries.filter(entry_type__iexact=filter_type)
-    paginator = Paginator(entries, 3)  
+    paginator = Paginator(entries, 2)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
